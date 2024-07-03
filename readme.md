@@ -5,7 +5,7 @@ It selects automatically the first matched item.
 You can also add items to favorites, so they appear first and are autocompleted first.
 
 ## How to use
-See the [example] folder.
+See the [/example] folder.
 
 ```js
 document.addEventListener('DOMContentLoaded', () => {
