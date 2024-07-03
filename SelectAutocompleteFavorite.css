@@ -1,0 +1,48 @@
+.saf-custom-select {
+   position: relative;
+   width: 200px;
+}
+
+.saf-select-items {
+   position: absolute;
+   top: 100%;
+   left: 0;
+   right: 0;
+   border: 1px solid #ddd;
+   background-color: #fff;
+   z-index: 99;
+   max-height: 200px;
+   overflow-y: auto;
+   display: none;
+}
+
+.saf-select-items div {
+   padding: 8px 16px;
+   cursor: pointer;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.saf-select-items div:hover {
+   background-color: #f1f1f1;
+}
+
+.saf-star-button {
+   background: none;
+   border: none;
+   cursor: pointer;
+   padding: 2px 4px;
+   font-size: 16px;
+}
+
+.saf-star-button:hover {
+   color: gold;
+}
+
+.saf-autocomplete-input {
+   width: 100%;
+   padding: 8px 16px;
+   border: 1px solid #ddd;
+   box-sizing: border-box;
+}
