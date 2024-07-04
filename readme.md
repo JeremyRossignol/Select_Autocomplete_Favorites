@@ -18,19 +18,30 @@ document.addEventListener('DOMContentLoaded', () => {
          { value: '4', text: 'Item 4', favorite: false },
          { value: '5', text: 'Item 5', favorite: false }
       ],
-      /*placeholder : 'Select an item',
-      onStarItem : (event) => {},
+      placeholder : 'Select an item',
+      onStarItem : (event) => {
+         console.log("item starred");
+      },
       classAutocomplete : 'saf-autocomplete-input',
       classItems : 'saf-select-items',
       classSelect : 'saf-custom-select',
-      classStarButton : 'saf-star-button'*/
+      classStarButton : 'saf-star-button'
    };
    const selectAutocompleteFavorite = new SelectAutocompleteFavorite(options);
 })
 ```
 
+## Options
+
+- **idDiv (*)** : The id of the div to use to generate the select
+- **items (*)** : the item array : ex : [{ value: '1', text: 'Item 1', favorite: false } ]
+- **placeholder** : The placeholder in the input
+- **onStarItem** : The function to call on a star item event
+- **classAutocomplete** : Not implemented yet.
+- **classItems** : Not implemented yet.
+- **classSelect** : Not implemented yet.
+- **classStarButton** : Not implemented yet.
+
 ## TODO
 
 - customizable css
-- comments
-- documentation

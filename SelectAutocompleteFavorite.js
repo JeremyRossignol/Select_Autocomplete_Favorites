@@ -13,6 +13,12 @@ class SelectAutocompleteFavorite {
    selectItems;
 
 
+   /**
+    * Constructor function to initialize SelectAutocompleteFavorite.
+    *
+    * @param {object} options - Options object containing idDiv, items, placeholder, onStarItem, classAutocomplete, classItems, classSelect, classStarButton.
+    * @return {void} 
+    */
    constructor(options) {
       const {
          idDiv,
@@ -37,6 +43,11 @@ class SelectAutocompleteFavorite {
       this.init();
    }
 
+   /**
+    * Initializes the component by creating necessary DOM elements and setting up event listeners.
+    *
+    * @return {void}
+    */
    init() {
       this.selectElement = document.querySelector(this.idDiv);
       this.inputField = document.createElement('input');
@@ -48,9 +59,15 @@ class SelectAutocompleteFavorite {
 
       this.setupSelect();
       this.renderItems();
-      this.setupListeners();
+      this.setupInputListeners();
    }
 
+   /**
+    * Sets up the select element by adding the necessary classes, appending the input field and select items container,
+    * and setting the width of the select items container to match the width of the input field.
+    *
+    * @return {void}
+    */
    setupSelect() {
       this.selectElement.classList.add(this.classSelect);
       this.selectElement.appendChild(this.inputField);
@@ -58,6 +75,11 @@ class SelectAutocompleteFavorite {
       this.selectItemsContainer.style.width = this.inputField.clientWidth + 'px';
    }
 
+   /**
+    * Renders the items in the select dropdown with star buttons, event listeners, and text content.
+    *
+    * @return {void} 
+    */
    renderItems() {
       this.selectItemsContainer.innerHTML = '';
       this.selectItems.forEach(item => {
@@ -87,7 +109,13 @@ class SelectAutocompleteFavorite {
       });
    }
 
-   setupListeners() {
+   /**
+    * Sets up event listeners for the input field to show and filter dropdown items, validate input on enter key,
+    * and hide dropdown on blur event.
+    *
+    * @return {void}
+    */
+   setupInputListeners() {
       this.inputField.addEventListener('focus', () => this.showDropdown());
       this.inputField.addEventListener('input', () => this.filterItems(this.inputField.value));
       this.inputField.addEventListener('keyup', (event) => {
@@ -98,26 +126,38 @@ class SelectAutocompleteFavorite {
       this.inputField.addEventListener('blur', () => {
          setTimeout(() => this.validateInput(), 200);  // delay to allow click event on star button
       });
-      /*document.addEventListener('click', (event) => {
-         if (!event.target.closest(this.classSelect)) {
-            this.hideDropdown();
-         }
-      });*/
    }
 
+   /**
+    * Toggles the favorite status of an item and updates the favorites list.
+    *
+    * @param {Object} item - The item to toggle the favorite status for.
+    * @return {void}
+    */
    toggleFavorite(item) {
       item.favorite = !item.favorite;
       this.updateFavorites();
    }
 
+   /**
+    * Sorts the selectItems array based on the 'favorite' property of each item,
+    * and then renders the items with updated star button states.
+    *
+    * @return {void}
+    */
    updateFavorites() {
       this.selectItems.sort((a, b) => {
          return (b.favorite ? 1 : 0) - (a.favorite ? 1 : 0);
       });
       this.renderItems();
-      //this.showDropdown();  // Keep dropdown open after starring an item
    }
 
+   /**
+    * Filters the selectItems array based on the given query and updates the display of each item element.
+    *
+    * @param {string} query - The query string to filter the selectItems array.
+    * @return {void}
+    */
    filterItems(query) {
       const lowerCaseQuery = query.toLowerCase();
       this.selectItems.forEach(item => {
@@ -131,6 +171,13 @@ class SelectAutocompleteFavorite {
       this.showDropdown();
    }
 
+   /**
+    * Validates the input field value by filtering the selectItems array based on a case-insensitive match with the input value.
+    * If a matching item is found and the input field value is not empty, updates the input field value and dataset value with the matching item's text and value.
+    * If no matching item is found or the input field value is empty, clears the input field value and deletes the dataset value.
+    *
+    * @return {void}
+    */
    validateInput() {
       const matchingItems = this.selectItems.filter(item => {
          return item.text.toLowerCase().includes(this.inputField.value.toLowerCase());
@@ -146,10 +193,20 @@ class SelectAutocompleteFavorite {
       this.hideDropdown();
    }
 
+   /**
+    * Shows the dropdown
+    *
+    * @return {void} 
+    */
    showDropdown() {
       this.selectItemsContainer.style.display = 'block';
    }
 
+   /**
+    * Hide the dropdown
+    *
+    * @return {void} 
+    */
    hideDropdown() {
       this.selectItemsContainer.style.display = 'none';
    }
