@@ -4,8 +4,15 @@ An autocomplete input, populated from a list.
 It selects automatically the first matched item.
 You can also add items to favorites, so they appear first and are autocompleted first.
 
+# Example
+
+![Example](example/example.png "Example").
+
+See [the live codepen](https://codepen.io/J-r-my-Rossignol/pen/LYowaNj).
+
+Or clone the repository and see the [/example](https://github.com/JeremyRossignol/Select_Autocomplete_Favorites/tree/master/example) folder.
+
 ## How to use
-See the [/example] folder.
 
 ```js
 document.addEventListener('DOMContentLoaded', () => {
