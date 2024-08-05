@@ -8,12 +8,20 @@ document.addEventListener('DOMContentLoaded', () => {
          { value: '4', text: 'Item 4', favorite: false },
          { value: '5', text: 'Item 5', favorite: false }
       ],
-      /*placeholder : 'Select an item',
-      onStarItem : (event) => {},
-      classAutocomplete : 'saf-autocomplete-input',
-      classItems : 'saf-select-items',
-      classSelect : 'saf-custom-select',
-      classStarButton : 'saf-star-button'*/
+      placeholder: 'Select an item',
+      onStarItem: (itemId, starred) => {
+         let log = "Item " + itemId;
+         if (starred) {
+            log += " starred.";
+         } else {
+            log += " unstarred.";
+         }
+         console.log(log);
+      },
+      classAutocomplete: 'saf-autocomplete-input',
+      classItems: 'saf-select-items',
+      classSelect: 'saf-custom-select',
+      classStarButton: 'saf-star-button'
    };
    const selectAutocompleteFavorite = new SelectAutocompleteFavorite(options);
 })

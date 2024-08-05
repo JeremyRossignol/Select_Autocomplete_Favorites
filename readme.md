@@ -19,8 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
          { value: '5', text: 'Item 5', favorite: false }
       ],
       placeholder : 'Select an item',
-      onStarItem : (event) => {
-         console.log("item starred");
+      onStarItem : (itemId, starred) => {
+         let log = "Item " + itemId;
+         if(starred){
+            log += " starred.";
+         }else{
+            log += " unstarred.";
+         }
+         console.log(log);
       },
       classAutocomplete : 'saf-autocomplete-input',
       classItems : 'saf-select-items',
@@ -45,3 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 ## TODO
 
 - customizable css
+
+## Authors
+
+Jeremy Rossignol

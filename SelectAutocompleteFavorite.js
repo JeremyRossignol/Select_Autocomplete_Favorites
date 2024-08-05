@@ -24,7 +24,7 @@ class SelectAutocompleteFavorite {
          idDiv,
          items,
          placeholder = 'Select an item',
-         onStarItem = (event) => { },
+         onStarItem = (itemId, starred) => { },
          classAutocomplete = 'saf-autocomplete-input',
          classItems = 'saf-select-items',
          classSelect = 'saf-custom-select',
@@ -137,6 +137,7 @@ class SelectAutocompleteFavorite {
    toggleFavorite(item) {
       item.favorite = !item.favorite;
       this.updateFavorites();
+      this.onStarItem(item.value, item.favorite);
    }
 
    /**
