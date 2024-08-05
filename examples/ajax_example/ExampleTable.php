@@ -48,7 +48,13 @@ class ExampleTable
 
    public function save()
    {
-      $rq = "INSERT INTO example_select (es_value, es_text, es_favorite) VALUES ('" . $this->es_value . "', '" . $this->es_text . "', " . $this->es_favorite . ")";
+      $rq = "INSERT INTO example_select (es_value, es_text, es_favorite) 
+            VALUES ('" . $this->es_value . "', '" . $this->es_text . "', " . $this->es_favorite . ")
+            ON DUPLICATE KEY UPDATE 
+            es_text = VALUES(es_text), 
+            es_favorite = VALUES(es_favorite)
+      ";
+
       DB::doQueryNR($rq);
 
       return $this;
