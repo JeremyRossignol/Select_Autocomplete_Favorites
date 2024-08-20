@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
          idDiv: "#SAF",
          items: items,
          placeholder: 'Select an item',
-         onStarItem: onStarItem(itemId, starred),
+         onStarItem: onStarItem,
          classAutocomplete: 'saf-autocomplete-input',
          classItems: 'saf-select-items',
          classSelect: 'saf-custom-select',
