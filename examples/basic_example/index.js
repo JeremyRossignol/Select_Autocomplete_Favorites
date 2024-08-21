@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
          }
          console.log(log);
       },
+      propertiesAutocomplete: {
+         "required": true
+      },
       classAutocomplete: 'saf-autocomplete-input',
       classItems: 'saf-select-items',
       classSelect: 'saf-custom-select',

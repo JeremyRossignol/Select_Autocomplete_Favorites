@@ -9,6 +9,7 @@ class SelectAutocompleteFavorite {
    classStarButton;
    selectElement;
    inputField;
+   propertiesAutocomplete;
    selectItemsContainer;
    selectItems;
 
@@ -25,10 +26,11 @@ class SelectAutocompleteFavorite {
          items,
          placeholder = 'Select an item',
          onStarItem = (itemId, starred) => { },
+         propertiesAutocomplete = {},
          classAutocomplete = 'saf-autocomplete-input',
          classItems = 'saf-select-items',
          classSelect = 'saf-custom-select',
-         classStarButton = 'saf-star-button'
+         classStarButton = 'saf-star-button',
       } = options;
 
       this.idDiv = idDiv;
@@ -39,6 +41,7 @@ class SelectAutocompleteFavorite {
       this.classSelect = classSelect;
       this.classStarButton = classStarButton;
       this.onStarItem = onStarItem;
+      this.propertiesAutocomplete = propertiesAutocomplete;
 
       this.init();
    }
@@ -51,6 +54,11 @@ class SelectAutocompleteFavorite {
    init() {
       this.selectElement = document.querySelector(this.idDiv);
       this.inputField = document.createElement('input');
+
+      Object.entries(this.propertiesAutocomplete).forEach(([key, value]) => {
+         this.inputField[key] = value;
+      });
+
       this.inputField.classList.add(this.classAutocomplete);
       this.inputField.placeholder = this.placeholder;
       this.selectItemsContainer = document.createElement('div');
@@ -58,7 +66,7 @@ class SelectAutocompleteFavorite {
       this.selectItems = this.items;
 
       this.setupSelect();
-      this.renderItems();
+      this.updateFavorites();
       this.setupInputListeners();
    }
 
@@ -72,7 +80,11 @@ class SelectAutocompleteFavorite {
       this.selectElement.classList.add(this.classSelect);
       this.selectElement.appendChild(this.inputField);
       this.selectElement.appendChild(this.selectItemsContainer);
-      this.selectItemsContainer.style.width = this.inputField.clientWidth + 'px';
+      if (this.inputField.clientWidth > 0) {
+         this.selectItemsContainer.style.width = this.inputField.clientWidth + 'px';
+      } else {
+         this.selectItemsContainer.style.width = '100%';
+      }
    }
 
    /**

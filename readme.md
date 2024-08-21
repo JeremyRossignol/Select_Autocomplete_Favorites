@@ -25,20 +25,24 @@ document.addEventListener('DOMContentLoaded', () => {
          { value: '4', text: 'Item 4', favorite: false },
          { value: '5', text: 'Item 5', favorite: false }
       ],
-      placeholder : 'Select an item',
-      onStarItem : (itemId, starred) => {
+      placeholder: 'Select an item',
+      onStarItem: (itemId, starred) => {
          let log = "Item " + itemId;
-         if(starred){
+         if (starred) {
             log += " starred.";
-         }else{
+         } else {
             log += " unstarred.";
          }
          console.log(log);
       },
-      classAutocomplete : 'saf-autocomplete-input',
-      classItems : 'saf-select-items',
-      classSelect : 'saf-custom-select',
-      classStarButton : 'saf-star-button'
+      propertiesAutocomplete: {
+         "required": true
+      },
+      classAutocomplete: 'saf-autocomplete-input',
+      classItems: 'saf-select-items',
+      classSelect: 'saf-custom-select',
+      classStarButton: 'saf-star-button'
+   };
    };
    const selectAutocompleteFavorite = new SelectAutocompleteFavorite(options);
 })
@@ -50,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 - **items (*)** : the item array : ex : [{ value: '1', text: 'Item 1', favorite: false } ]
 - **placeholder** : The placeholder in the input
 - **onStarItem** : The function to call on a star item event
+- **itemProperties** : List of properties attached to the input
 - **classAutocomplete** : Not implemented yet.
 - **classItems** : Not implemented yet.
 - **classSelect** : Not implemented yet.

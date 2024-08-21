@@ -55,6 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
          items: items,
          placeholder: 'Select an item',
          onStarItem: onStarItem,
+         propertiesAutocomplete: {
+            "required": true
+         },
          classAutocomplete: 'saf-autocomplete-input',
          classItems: 'saf-select-items',
          classSelect: 'saf-custom-select',

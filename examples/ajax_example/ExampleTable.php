@@ -67,7 +67,7 @@ class ExampleTable
 
       $items = [];
       foreach ($res as $row) {
-         $items[] = new ExampleTable($row['es_value'], $row['es_text'], $row['es_favorite']);
+         $items[] = new ExampleTable($row['es_value'], $row['es_text'], (bool) $row['es_favorite']);
       }
 
       return $items;
