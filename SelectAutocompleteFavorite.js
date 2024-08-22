@@ -9,7 +9,9 @@ class SelectAutocompleteFavorite {
    classStarButton;
    selectElement;
    inputField;
+   inputHidden;
    propertiesAutocomplete;
+   propertiesHiddenInput;
    selectItemsContainer;
    selectItems;
 
@@ -27,6 +29,9 @@ class SelectAutocompleteFavorite {
          placeholder = 'Select an item',
          onStarItem = (itemId, starred) => { },
          propertiesAutocomplete = {},
+         propertiesHiddenInput = {
+            'name': 'saf-hidden-value',
+         },
          classAutocomplete = 'saf-autocomplete-input',
          classItems = 'saf-select-items',
          classSelect = 'saf-custom-select',
@@ -42,6 +47,7 @@ class SelectAutocompleteFavorite {
       this.classStarButton = classStarButton;
       this.onStarItem = onStarItem;
       this.propertiesAutocomplete = propertiesAutocomplete;
+      this.propertiesHiddenInput = propertiesHiddenInput;
 
       this.init();
    }
@@ -53,10 +59,19 @@ class SelectAutocompleteFavorite {
     */
    init() {
       this.selectElement = document.querySelector(this.idDiv);
+
       this.inputField = document.createElement('input');
+      this.inputField.type = 'text';
+
+      this.inputHidden = document.createElement('input');
+      this.inputHidden.type = 'hidden';
 
       Object.entries(this.propertiesAutocomplete).forEach(([key, value]) => {
          this.inputField[key] = value;
+      });
+
+      Object.entries(this.propertiesHiddenInput).forEach(([key, value]) => {
+         this.inputHidden[key] = value;
       });
 
       this.inputField.classList.add(this.classAutocomplete);
@@ -79,6 +94,7 @@ class SelectAutocompleteFavorite {
    setupSelect() {
       this.selectElement.classList.add(this.classSelect);
       this.selectElement.appendChild(this.inputField);
+      this.selectElement.appendChild(this.inputHidden);
       this.selectElement.appendChild(this.selectItemsContainer);
       if (this.inputField.clientWidth > 0) {
          this.selectItemsContainer.style.width = this.inputField.clientWidth + 'px';
@@ -116,6 +132,7 @@ class SelectAutocompleteFavorite {
          itemElement.addEventListener('click', () => {
             this.inputField.value = item.text;
             this.inputField.dataset.value = item.value;
+            this.inputHidden.value = item.value;
             this.hideDropdown();
          });
       });
@@ -199,8 +216,10 @@ class SelectAutocompleteFavorite {
       if (matchingItems.length > 0 && this.inputField.value !== '') {
          this.inputField.value = matchingItems[0].text;
          this.inputField.dataset.value = matchingItems[0].value;
+         this.inputHidden.value = matchingItems[0].value;
       } else {
          this.inputField.value = '';
+         this.inputHidden.value = '';
          delete this.inputField.dataset.value;
       }
       this.hideDropdown();

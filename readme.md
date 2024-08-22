@@ -3,14 +3,15 @@
 An autocomplete input, populated from a list.
 It selects automatically the first matched item.
 You can also add items to favorites, so they appear first and are autocompleted first.
+The data is stored in an hidden input that you can post.
 
 # Example
 
-![Example](example/example.png "Example").
+![Example](examples/example.png "Example").
 
 See [the live codepen](https://codepen.io/J-r-my-Rossignol/pen/LYowaNj).
 
-Or clone the repository and see the [/example](https://github.com/JeremyRossignol/Select_Autocomplete_Favorites/tree/master/example) folder.
+Or clone the repository and see the [/examples](https://github.com/JeremyRossignol/Select_Autocomplete_Favorites/tree/master/examples) folder.
 
 ## How to use
 
@@ -35,8 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
          }
          console.log(log);
       },
-      propertiesAutocomplete: {
-         "required": true
+      propertiesAutocomplete: {},
+      propertiesHiddenInput: {
+         "required": true,
+         'name': 'odp_dest',
       },
       classAutocomplete: 'saf-autocomplete-input',
       classItems: 'saf-select-items',

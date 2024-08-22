@@ -18,8 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
          }
          console.log(log);
       },
-      propertiesAutocomplete: {
-         "required": true
+      propertiesAutocomplete: {},
+      propertiesValueHiddenInput: {
+         "required": true,
+         'name': 'name',
       },
       classAutocomplete: 'saf-autocomplete-input',
       classItems: 'saf-select-items',
